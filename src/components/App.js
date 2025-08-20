@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchBooks,
-  setSortBy,
-  setSortOrder,
-  sortBooks,
-} from "../store/booksSlice";
+import { fetchBooks, setSortBy, setSortOrder } from "../store/booksSlice";
 import "./../styles/App.css";
 
 const App = () => {
@@ -17,10 +12,6 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchBooks());
   }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(sortBooks());
-  }, [sortBy, sortOrder, dispatch]);
 
   const handleSortByChange = (e) => {
     dispatch(setSortBy(e.target.value));
@@ -60,13 +51,13 @@ const App = () => {
             onChange={handleSortOrderChange}
             data-testid="sort-order"
           >
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
+            <option value="asc">Ascending (A-Z)</option>
+            <option value="desc">Descending (Z-A)</option>
           </select>
         </div>
       </div>
 
-      {items.length > 0 ? (
+      {items && items.length > 0 ? (
         <table className="books-table">
           <thead>
             <tr>
@@ -78,7 +69,7 @@ const App = () => {
           </thead>
           <tbody>
             {items.map((book) => (
-              <tr key={book.primary_isbn13}>
+              <tr key={book.primary_isbn13 || book.title}>
                 <td>{book.title}</td>
                 <td>{book.author}</td>
                 <td>{book.publisher}</td>
@@ -88,7 +79,7 @@ const App = () => {
           </tbody>
         </table>
       ) : (
-        <div className="no-books">No books available</div>
+        !loading && <div className="no-books">No books available</div>
       )}
     </div>
   );
