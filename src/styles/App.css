@@ -1,1 +1,64 @@
+.app {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
 
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.sort-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.sort-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sort-group label {
+  font-weight: bold;
+}
+
+.sort-group select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.books-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.books-table th,
+.books-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.books-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.books-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.loading, .error, .no-books {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+}
+
+.error {
+  color: #d32f2f;
+}
