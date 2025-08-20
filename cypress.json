@@ -1,1 +1,21 @@
 {}
+{
+  "baseUrl": "http://localhost:8080",
+  "defaultCommandTimeout": 10000,
+  "responseTimeout": 30000,
+  "requestTimeout": 5000,
+  "viewportWidth": 1280,
+  "viewportHeight": 720,
+  "video": false,
+  "screenshotOnRunFailure": true,
+  "retries": {
+    "runMode": 1,
+    "openMode": 0
+  },
+  "env": {
+    "apiUrl": "http://localhost:3000/api",
+    "username": "testuser",
+    "password": "testpassword"
+  },
+  "projectId": null
+}

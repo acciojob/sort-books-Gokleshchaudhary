@@ -21,16 +21,28 @@ const App = () => {
     dispatch(setSortOrder(e.target.value));
   };
 
-  if (loading) return <div className="loading">Loading books...</div>;
-  if (error) return <div className="error">Error: {error}</div>;
+  if (loading)
+    return (
+      <div className="loading" data-testid="loading">
+        Loading books...
+      </div>
+    );
+  if (error)
+    return (
+      <div className="error" data-testid="error">
+        Error: {error}
+      </div>
+    );
 
   return (
     <div className="app">
-      <h1>Book Sorting App</h1>
+      <h1 data-testid="header">Books List</h1>
 
       <div className="sort-controls">
         <div className="sort-group">
-          <label htmlFor="sort-by">Sort By:</label>
+          <label htmlFor="sort-by" data-testid="sort-by-label">
+            Sort By:
+          </label>
           <select
             id="sort-by"
             value={sortBy}
@@ -44,7 +56,9 @@ const App = () => {
         </div>
 
         <div className="sort-group">
-          <label htmlFor="sort-order">Order:</label>
+          <label htmlFor="sort-order" data-testid="sort-order-label">
+            Order:
+          </label>
           <select
             id="sort-order"
             value={sortOrder}
@@ -58,7 +72,7 @@ const App = () => {
       </div>
 
       {items && items.length > 0 ? (
-        <table className="books-table">
+        <table className="books-table" data-testid="books-table">
           <thead>
             <tr>
               <th>Title</th>
@@ -69,17 +83,24 @@ const App = () => {
           </thead>
           <tbody>
             {items.map((book) => (
-              <tr key={book.primary_isbn13 || book.title}>
-                <td>{book.title}</td>
-                <td>{book.author}</td>
-                <td>{book.publisher}</td>
-                <td>{book.primary_isbn13}</td>
+              <tr
+                key={book.primary_isbn13 || book.title}
+                data-testid="book-row"
+              >
+                <td data-testid="book-title">{book.title}</td>
+                <td data-testid="book-author">{book.author}</td>
+                <td data-testid="book-publisher">{book.publisher}</td>
+                <td data-testid="book-isbn">{book.primary_isbn13}</td>
               </tr>
             ))}
           </tbody>
         </table>
       ) : (
-        !loading && <div className="no-books">No books available</div>
+        !loading && (
+          <div className="no-books" data-testid="no-books">
+            No books available
+          </div>
+        )
       )}
     </div>
   );
